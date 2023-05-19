@@ -33,7 +33,7 @@ contract PurseContract {
     mapping(address => uint256) public memberToDeposit; // user to deposit
     mapping(address => bool) public member_has_recieved;
     mapping(address => mapping(address => bool)) public has_donated_for_member;
-     mapping(address => mapping(address => bool)) public has_been_donated_for_by_member;
+    mapping(address => mapping(address => bool)) public has_been_donated_for_by_member;
     mapping(address => uint256) public userClaimableDeposit;
     mapping(address => bool) public approve_To_Claim_Without_Complete_Votes;
     mapping(address => uint256) public votes_for_member_to_recieve_funds;
@@ -155,7 +155,7 @@ contract PurseContract {
     }
 
     /**  @notice upon joining a purse, you need not include deposit amount
-        deposit amount will be needed when denoating for a specific user using the
+        deposit amount will be needed when donatin for a specific user using the
         depositDonation() function
         */
 
