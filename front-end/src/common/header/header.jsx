@@ -1,70 +1,85 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi"
-import HeaderButton from "../buttons/headerButton";
-import Button from "../../common/themeingToggle/Button";
+import { NavLink, useNavigate } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
+// import HeaderButton from "../buttons/headerButton";
+import ThemeSwitch from "../themeSwitch/themeSwitch";
 import useTheme from "../../hooks/useTheme";
 
-const Header = ({ data = []}) => {
-  const {theme, changeTheme} = useTheme();
-  const navigate = useNavigate();
-  const redirectToApp = () => {
-    navigate("/app/purses");
-  };
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
-  const handleRedirect = (link) => {
-    navigate(link);
-  };
-  const toggleClass = ' transform translate-x-6';
-  return (
-    <header className="relative dark:bg-dark-1 bg-light-1 flex flex-wrap items-center justify-between px-2 py-0">
-      <div className="container px-4 py-2 dark:bg-nav-dark bg-nav-light mx-auto flex flex-wrap rounded-br rounded-bl items-center justify-between">
-        <div
-          className="flex items-center cursor-pointer"
-          onClick={() => handleRedirect("/")}
-        >
-          <img
-            className="w-10 md:w-10 lg:w-14 -rotate-12"
-            src="/assets/Vector.svg"
-            alt="web3brigde-logo"
-          />
-          <span className="font-Montserrat font-extrabold lg:text-base sm:text-xs uppercase dark:text-white-1 text-dark-1">
-            Chained thrift
-          </span>
-        </div>
-        <button
-          className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-          type="button"
-          onClick={() => setNavbarOpen(!navbarOpen)}
-        >
-          <GiHamburgerMenu color="#fff" size="18" />
-        </button>
-        <div
-          className={
-            "lg:flex flex-grow items-center" +
-            (navbarOpen ? " flex" : " hidden")
-          }
-          id="example-navbar-danger"
-        >
-          <div className="flex flex-col lg:flex-row items-center list-none lg:ml-auto lg:mr-4">
-            {data.map((item, index) => {
-              return (
+const Header = ({ data = [], toggleDrawer }) => {
+    const { theme, changeTheme } = useTheme();
+    const navigate = useNavigate();
+    // const redirectToApp = () => {
+    //   navigate("/app/purses");
+    // };
+    const handleRedirect = (link) => {
+        navigate(link);
+    };
+    return (
+        <header className="relative flex flex-wrap items-center justify-between px-2 py-0 dark:bg-dark-1 bg-light-1">
+            <div className="container flex flex-wrap items-center justify-between px-4 py-2 mx-auto rounded-bl rounded-br dark:bg-nav-dark bg-nav-light">
                 <div
-                  key={index}
-                  className="font-Poppins  text-base  font-extrabold dark:text-white-1 text-dark-1 mr-24 cursor-pointer"
-                  onClick={() => handleRedirect(item.link)}
+                    className="flex items-center cursor-pointer"
+                    onClick={() => handleRedirect("/")}
                 >
-                  {item.value}
+                    <img
+                        className="w-6 mr-2 md:w-10 lg:w-14"
+                        src="/assets/ellipse.svg"
+                        alt="chainedThrift-logo"
+                    />
+                    <span className="text-xs font-black uppercase font-Montserrat md:text-base dark:text-white-1 text-dark-1">
+                        Chained thrift
+                    </span>
                 </div>
-              );
-            })}
-          <HeaderButton action={redirectToApp}>Launch App</HeaderButton>
-          </div>
-          <Button  className={`${theme === 'dark'? null : toggleClass}`} action={changeTheme}/>
-        </div>
-      </div>
-    </header>
-  );
+
+                <nav className="items-center hidden lg:flex lg:flex-row lg:ml-auto lg:mr-4">
+                    {data.map((item, index) => {
+                        return (
+                            <NavLink
+                                key={index}
+                                className={({ isActive }) =>
+                                    `font-Poppins text-base font-extrabold dark:text-white-1 text-dark-1 mr-24 cursor-pointer ${
+                                        isActive &&
+                                        " border-b-4 border-b-dark-1 dark:border-b-white-1"
+                                    }`
+                                }
+                                to={item.link}
+                            >
+                                {item.value}
+                            </NavLink>
+                        );
+                    })}
+                    <a
+                        href="https://discord.com/invite/ZfSvh7D5"
+                        target="_blank"
+                        rel="noreferrer"
+                        className={`font-Poppins text-base font-extrabold dark:text-white-1 text-dark-1 mr-24 cursor-pointer`}
+                    >
+                        Community
+                    </a>
+                    {/* <a href="https://mumbai.polygonscan.com/address/0xeae9911b42bf966f038d2ef49563012e31a2b409#writeContract"
+           className={ `font-Poppins text-base font-extrabold dark:text-white-1 text-dark-1 mr-24 cursor-pointer`}
+           target="_blank" rel="noopener noreferrer"
+          >Claim CTT Token</a> */}
+                    {/* <HeaderButton>Launch App</HeaderButton> */}
+                </nav>
+
+                <div className="flex items-center">
+                    <ThemeSwitch
+                        className="transform translate-x-6 dark:transform-none dark:translate-none"
+                        action={changeTheme}
+                        theme={theme}
+                    />
+                    <button
+                        className="block ml-4 text-white outline-none cursor-pointer lg:hidden"
+                        type="button"
+                        onClick={toggleDrawer}
+                    >
+                        <GiHamburgerMenu className="text-2xl text-white-1" />
+                    </button>
+                </div>
+            </div>
+        </header>
+    );
 };
 
 export default Header;

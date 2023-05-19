@@ -1,16 +1,14 @@
 import React from 'react';
 
-
-
 const Actions = () => {
     return (
         <React.Fragment>
-            <section className="bg-gray-8 p-10">
+            <section className="bg-gray-8 p-10 mb-32">
                 <div className= "container mx-auto">
-                     <h4 className="text-center text-white-1 mb-10 text-Poppins font-bold text-xl">
+                     <h4 className="text-center text-white-1 mb-10 font-Poppins font-bold text-xl">
                         How it works
                     </h4>
-                    <div className="grid gap-8 lg:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  ">
+                    <div className="grid gap-24 lg:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  ">
                         <div>
                             <img
                                 className="block mx-auto"
@@ -47,7 +45,7 @@ const Actions = () => {
                                 Deposit
                             </p>
                             <p className="text-center font-Montserrat font-normal text-white-1">
-                                Use the depsit function to start saving
+                                Use the deposit function to start saving
                             </p>
                         </div>
                     </div>

@@ -1,13 +1,13 @@
 import { OPEN, CLOSE } from ".";
 
-export const openWalletModal = () => {
+export const OPEN_WALLET_MODAL = () => {
     return {
-        type: OPEN
-    }
-}
+        type: OPEN,
+    };
+};
 
-export const closeWalletModal = () => {
+export const CLOSE_WALLET_MODAL = () => {
     return {
-        type: CLOSE
-    }
-}
+        type: CLOSE,
+    };
+};

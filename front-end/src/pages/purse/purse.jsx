@@ -1,14 +1,10 @@
 import React from "react";
-import LisplayBox from "../../layouts/purseLayout/components/listDisplayBox";
 import Details from "./components/Details";
-import MobileBar from "../../layouts/purseLayout/components/MobileBar"
 
-const Purse = ({theme, activeTab, setActiveTab}) => {
+const Purse = ({member}) => {
   return (
     <div className="w-full">
-      <LisplayBox />
-      <MobileBar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <Details />
+      <Details member={member} />
     </div>
   );
 };
